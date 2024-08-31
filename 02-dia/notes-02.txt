@@ -363,10 +363,60 @@ CMD ["/app/hello"]
 ------------------------------------------------------------------------
 
 
+Docker Hub Container Image Library | App Containerization
+https://hub.docker.com/
+
+docker login
+
+docker image build -t marcusvbrangel/myapache2:1.0 .
+
+docker image ls 
+
+    REPOSITORY                      TAG       IMAGE ID       CREATED         SIZE
+    marcusvbrangel/myapache2        1.0       8b35f2ac8f7e   19 hours ago    246MB
+
+
+NOTE:
+
+    docker image tag foobar marcusvbrangel/foobar:1.0
+
+
+docker image push marcusvbrangel/myapache2:1.0
+
+    The push refers to repository [docker.io/marcusvbrangel/myapache2]
+    f8b05b404175: Pushed 
+    19b1230ac19d: Mounted from library/debian 
+    1.0: digest: sha256:cbd7804a8cb11d1c97ea31073509a7516e96e66741ed6cbfbddb1c7b2e48b939 size: 741
+
+
+docker search marcusvbrangel
+
+    NAME                            DESCRIPTION                                     STARS     OFFICIAL
+    marcusvbrangel/myapache2        This is my simple yet functional apache webse…   0   
+
+
+docker container run -d -it -p 80:80 --name mywebserver marcusvbrangel/myapache2:1.0
+
+    Unable to find image 'marcusvbrangel/myapache2:1.0' locally
+    1.0: Pulling from marcusvbrangel/myapache2
+    3892befd2c3f: Already exists 
+    c353af39ad7b: Already exists 
+    Digest: sha256:cbd7804a8cb11d1c97ea31073509a7516e96e66741ed6cbfbddb1c7b2e48b939
+    Status: Downloaded newer image for marcusvbrangel/myapache2:1.0
+    2e205d5de2d089a4e4b9e09f65c78178a5b491154c91292d2febd895e187bb8b
+
+
+curl localhost
 
 
 
-------------------------------------------------------------------------
+
+
+
+
+
+
+--------------------------------------------------------------------
 
 
 
