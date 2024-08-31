@@ -1,0 +1,13 @@
+FROM ubuntu:20.04
+LABEL maintainer="marcusvbrangel"
+RUN apt update && \
+    apt install nginx -y && \
+    rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/html/
+ADD node_exporter-1.8.2.darwin-amd64.tar.gz /root/node-exporter
+COPY index.html .
+ENV APP_VERSION=1.0.0
+EXPOSE 80
+HEALTHCHECK --timeout=2s CMD [ "curl localhost" ] || exit 1
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]

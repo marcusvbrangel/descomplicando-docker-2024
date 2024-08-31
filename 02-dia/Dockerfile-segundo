@@ -1,0 +1,9 @@
+FROM ubuntu:20.04
+RUN apt update && \
+    apt install nginx -y && \
+    rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/html/
+COPY index.html .
+ENV APP_VERSION 1.0.0
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

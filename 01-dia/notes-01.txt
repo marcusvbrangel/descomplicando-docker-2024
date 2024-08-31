@@ -1,0 +1,345 @@
+
+-----------------------------------------------------------------------
+
+
+container run hello-world
+
+docker container run -it --name toskao ubuntu
+
+docker container ls
+ 
+docker container ls -a
+
+docker container run
+
+docker container start
+
+docker container stop
+
+docker container pause
+
+docker container unpause
+
+docker container rm
+
+docker container attach
+
+
+
+
+
+-----------------------------------------------------------------------
+
+
+docker image ls
+
+cat /etc/issue
+
+docker image rm jenkins-custom
+
+docker image rm 5dea1f4edf69
+
+    Error response from daemon: conflict: unable to delete 5dea1f4edf69 (must be forced) - image is being used by stopped container b648e3f6eddc
+
+    docker container rm b648e3f6eddc
+
+    docker image rm 5dea1f4edf69
+
+docker container rm xyz
+
+docker container rm --help
+
+docker container rm -f xyz
+
+reset
+
+docker image inspect --help
+
+docker image inspect postgres
+
+docker container inspect --help
+
+docker container inspect 4af0d734a8f0  
+
+
+
+
+docker container run -d --name my-nginx nginx
+
+docker container ls
+
+    CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+    8619fbc630e8   nginx                 "/docker-entrypoint.…"   22 seconds ago   Up 21 seconds   80/tcp                                      my-nginx
+
+docker container exec -it my-nginx ls /
+
+docker container exec -it my-nginx curl localhost
+
+CTRL + R   /   CTRL + S
+
+docker container exec -it my-nginx bash
+
+echo 'teste de funcionamento' > /usr/share/nginx/html/index.html
+
+curl localhost
+
+root@8619fbc630e8:/# exit
+
+docker container ls
+
+docker container rm -f my-nginx
+
+
+
+docker container run -d -p 8080:80 --name my-nginx nginx
+
+docker container ls
+
+    CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+    ab3b5daaa26a   nginx                 "/docker-entrypoint.…"   31 seconds ago   Up 31 seconds   0.0.0.0:8080->80/tcp, :::8080->80/tcp       my-nginx
+
+
+
+
+docker image pull centos:7
+
+docker container create --name my-centos7 centos:7
+
+docker container ls -a 
+
+    CONTAINER ID   IMAGE                                 COMMAND                  CREATED          STATUS                         PORTS       NAMES
+    05ce0e80dee8   centos:7                              "/bin/bash"              30 seconds ago   Created                                    my-centos7
+
+
+
+NOTA: Caso queira sair do container e mantê-lo em execução, 
+      é necessário sair com o seguinte atalho do teclado:
+
+    ctrl + p + q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+
+
+docker container stats
+
+    CONTAINER ID   NAME                            CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+    ab3b5daaa26a   my-nginx                        0.00%     4.531MiB / 15.5GiB   0.03%     38.8kB / 7.76kB   12.3kB / 12.3kB   5
+    0eeed15a2199   broker                          2.11%     916.9MiB / 15.5GiB   5.78%     2.64MB / 69.8kB   98MB / 3.48GB     104
+
+docker container stats broker   
+
+docker container top my-nginx
+
+docker container logs my-nginx
+
+
+
+
+
+-----------------------------------------------------------------------
+
+
+curl -fsSL https://get.docker.com | bash
+
+dockerd-rootless-setuptool.sh install
+
+apt install -y uidmap
+
+    dockerd-rootless-setuptool.sh install
+
+docker
+
+docker --version
+
+docker container run hello-world
+
+NOTA: Ambiente de treinamento:
+
+    instruat
+
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+
