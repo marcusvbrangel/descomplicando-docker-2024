@@ -302,13 +302,62 @@ curl localhost
 ------------------------------------------------------------------------
 
 
+"""
+# Etapa 1: Construção
+FROM eclipse-temurin:22-jdk-alpine as build
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o arquivo de build Gradle ou Maven (escolha a sua ferramenta)
+COPY . .
+
+# Compila a aplicação (ajuste o comando conforme sua ferramenta de build)
+# Para Maven
+RUN ./mvnw package -DskipTests
+
+# Ou, se estiver usando Gradle, você pode usar:
+# RUN ./gradlew build -x test
+
+# Etapa 2: Execução
+FROM alpine:latest
+
+# Instale JRE e outras dependências, se necessário (o JRE já é o suficiente para Spring Boot)
+RUN apk add --no-cache openjdk22
+
+# Copia o jar compilado da etapa de construção
+COPY --from=build /app/target/*.jar app.jar
+
+# Define a porta que o aplicativo irá escutar
+EXPOSE 8080
+
+# Comando para executar o jar (ajuste o nome do seu jar se diferente)
+CMD ["java", "-jar", "/app.jar"]
+"""
+
+
+docker build -t my-spring-boot-app .
+
+docker run -d -p 8080:8080 my-spring-boot-app
+
+
 
 
 
 ------------------------------------------------------------------------
 
 
+"""
+FROM golang:1.18 as buildando
+WORKDIR /app
+COPY . ./
+RUN go mod init hello
+RUN go build -o /app/hello
 
+FROM alpine:3.15.9
+COPY --from=buildando /app/hello /app/hello
+CMD ["/app/hello"]
+"""
 
 
 ------------------------------------------------------------------------
