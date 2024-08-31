@@ -279,7 +279,28 @@ ip addr show eth0
 ------------------------------------------------------------------------
 
 
+
+"""
+FROM alpine:3.14
+RUN apk add nginx curl
+RUN mkdir -p /run/nginx
+EXPOSE 80
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]
+"""
+
+
+docker container run -d -it -p 80:80 --name giropops-web giropops-web
+
+docker container ls
+
+docker container exec -it giropops-web sh
+
+curl localhost
+
+
 ------------------------------------------------------------------------
+
 
 
 
