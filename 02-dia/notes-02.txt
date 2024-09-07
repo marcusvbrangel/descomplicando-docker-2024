@@ -419,20 +419,130 @@ curl localhost
 --------------------------------------------------------------------
 
 
+D E S A F I O   02
+
+
+
+git clone https://github.com/badtuxx/giropops-senhas.git
+
+&&
+
+cd giropops-senhas/
+
+&&
+
+apt list --upgradable
+
+apt update -y && apt install pip -y && apt install curl -y && apt install curl -y && apt install redis -y && apt install vim -y
+
+&&
+
+pip install --no-cache-dir -r requirements.txt
+
+&&
+
+systemctl start redis
+
+systemctl status redis
+
+&&
+
+export REDIS_HOST=localhost
+
+&&
+
+flask run --host=0.0.0.0
+
+
+
+---------- parte 02 -------
+
+
+cd giropops-senhas
+
+sudo apt install vim -y
+
+vim Dockerfile
+
+"""
+FROM python:3.9.19-bullseye
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 5000 8088
+ENV REDIS_HOST=redis-service
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+"""
+
+------
+
+sudo ss -tulnp | grep 6379
+
+    tcp    LISTEN   0        511             127.0.0.1:6379           0.0.0.0:*      users:(("redis-server",pid=3909,fd=6))
+    tcp    LISTEN   0        511                 [::1]:6379              [::]:*      users:(("redis-server",pid=3909,fd=7))
+
+sudo systemctl stop redis
+
+systemctl status redis
+
+ou
+
+sudo kill pid
+
+sudo ss -tulnp | grep 6379
+
+------
+
+docker image build -t marcusvbrangel/linuxtips-giropops-senhas:1.0 .
+
+
+docker container rm -f giropops-senhas redis-service
+
+docker container run -d --name redis-service -p 6379:6379 redis
+
+docker container run -d -p 5000:5000 --name giropops-senhas marcusvbrangel/linuxtips-giropops-senhas:1.0
+
+
+docker container rm -f giropops-senhas
+
+docker container ls -a
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+docker network create mynetwork
+
+docker container run -d --name redis-service --network mynetwork -p 6379:6379 redis
+
+docker container run -d --name giropops-senhas --network mynetwork -p 5000:5000 \
+marcusvbrangel/linuxtips-giropops-senhas:1.0
+
+ENV REDIS_HOST=redis-service
+
+or
+
+docker container run -d -p 5000:5000 --name giropops-senhas --network mynetwork -e
+REDIS_HOST=redis-service marcusvbrangel/linuxtips-giropops-senhas:1.0
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
+
 
 
 ------------------------------------------------------------------------
 
 
-------------------------------------------------------------------------
-
-
 
 
 ------------------------------------------------------------------------
-
-
-
 
 
 ------------------------------------------------------------------------
