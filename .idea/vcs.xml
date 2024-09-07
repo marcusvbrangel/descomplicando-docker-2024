@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/02-dia/giropops-senhas" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/03-dia/giropops-senhas" vcs="Git" />
   </component>
 </project>
